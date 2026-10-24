@@ -15,6 +15,17 @@
   const FORM_EXTRA = {};
   const MAIL_FALLBACK = ['info.genkei', 'gmail.com'];
 
+  // Welcome screen: CSS runs and ends it on its own; here we remember it and allow skipping.
+  const intro = document.querySelector('div.intro');
+  if (intro && document.documentElement.classList.contains('has-intro')) {
+    try { sessionStorage.setItem('genkei-intro', '1'); } catch (e) { /* storage blocked */ }
+    const finish = () => document.documentElement.classList.add('intro-done');
+    intro.addEventListener('animationend', event => { if (event.target === intro) finish(); });
+    const skip = () => intro.classList.add('intro--skip');
+    intro.addEventListener('click', skip);
+    document.addEventListener('keydown', skip, { once: true });
+  }
+
   const menuButton = document.querySelector('[data-menu-toggle]');
   const primaryNav = document.getElementById('primary-navigation');
   const closeMenu = () => {

@@ -91,6 +91,26 @@ em{font-style:italic}
 @keyframes heroReveal{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:scale(1)}}
 @keyframes heroBreath{to{transform:scale(1.035)}}
 
+/* Home: welcome screen (first visit per session; see inline script in index.html) */
+.intro{display:none}
+html.has-intro .intro{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;background:radial-gradient(ellipse 60% 52% at 50% 50%,#1c1915 0%,#0b0a08 58%,#060504 100%);color:var(--text);cursor:pointer;animation:introOut .75s cubic-bezier(.76,0,.24,1) 1.3s forwards}
+html.intro-done .intro{display:none}
+html.has-intro .hero-visual__frame img{animation-delay:1.25s,4.05s}
+.intro__inner{display:flex;flex-direction:column;align-items:center;text-align:center;animation:introInnerOut .75s cubic-bezier(.76,0,.24,1) 1.3s forwards}
+.intro__line{width:1px;height:clamp(48px,8vh,72px);background:linear-gradient(to bottom,transparent,var(--accent));transform-origin:top;animation:introLine .7s cubic-bezier(.2,.7,.2,1) both}
+.intro__jp{font:200 clamp(46px,6.4vw,78px)/1 var(--jp);letter-spacing:.32em;padding-left:.32em;margin-top:30px;animation:introBlur .95s cubic-bezier(.2,.7,.2,1) .12s both}
+.intro__en{font:400 clamp(14px,1.5vw,19px)/1 var(--serif);letter-spacing:.62em;padding-left:.62em;margin-top:24px;color:var(--accent-2);animation:introSpace 1.05s cubic-bezier(.2,.7,.2,1) .3s both}
+.intro__tag{font:italic 300 clamp(14px,1.3vw,17px)/1 var(--serif);letter-spacing:.06em;color:var(--text-3);margin-top:32px;animation:introFade .7s ease .62s both}
+.intro__mark{position:absolute;bottom:clamp(28px,5vh,48px);left:0;right:0;text-align:center;font:500 8px var(--sans);letter-spacing:.42em;color:var(--text-3);animation:introFade .7s ease .5s both}
+html.has-intro .intro.intro--skip{animation:introSkip .35s ease forwards}
+@keyframes introLine{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes introBlur{from{opacity:0;filter:blur(14px);transform:scale(1.08)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes introSpace{from{opacity:0;letter-spacing:1.3em}to{opacity:1;letter-spacing:.62em}}
+@keyframes introFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes introInnerOut{to{opacity:0;transform:translateY(-36px)}}
+@keyframes introOut{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 100% 0);visibility:hidden}}
+@keyframes introSkip{to{opacity:0;visibility:hidden}}
+
 /* Home: manifesto & coast */
 .manifesto{padding-block:clamp(90px,10vw,150px)}
 .manifesto-grid{display:grid;grid-template-columns:45% 1fr;gap:7%;margin-top:30px}
